@@ -85,6 +85,17 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Yarn dependencies
+        run: yarn install
+
+      - name: Build JavaScript with esbuild
+        run: yarn build
+
       - name: Run tests
         env:
           RAILS_ENV: test
