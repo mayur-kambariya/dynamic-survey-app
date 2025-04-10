@@ -44,13 +44,13 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
   # RSpec for testing
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
-  gem 'faker', '~> 3.2'
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker", "~> 3.2"
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 5.0'
+  gem "shoulda-matchers", "~> 5.0"
 end
 
 group :development do

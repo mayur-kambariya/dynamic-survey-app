@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   get "home/index"
   namespace :api do
     namespace :v1 do
-      resources :surveys, only: [:show]
-      resources :kpi_dashboard, only: [:index]
-      resources :survey_responses, only: [:create]
+      resources :surveys, only: %i[ show ]
+      resources :kpi_dashboard, only: %i[ index ]
+      resources :survey_responses, only: %i[ create ]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
