@@ -16,6 +16,8 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+!/lib/.keep
+!/tasks/.keep
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
