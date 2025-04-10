@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::SurveysController, type: :controller do
+  render_views
   describe 'GET #show' do
     let(:survey) { create(:survey) }
     let(:category) { create(:category, survey: survey) }
@@ -15,7 +16,7 @@ RSpec.describe Api::V1::SurveysController, type: :controller do
 
     context 'with valid survey ID' do
       it 'returns the survey with categories, questions, and answer options' do
-        get :show, params: { id: survey.id }
+        get :show, params: { id: survey.id }, format: :json
         expect(response).to have_http_status(:ok)
         json_response = JSON.parse(response.body)
         expect(json_response['id']).to eq(survey.id)
@@ -27,7 +28,7 @@ RSpec.describe Api::V1::SurveysController, type: :controller do
 
     context 'with invalid survey ID' do
       it 'returns a not found error' do
-        get :show, params: { id: 'invalid' }
+        get :show, params: { id: 'invalid' }, format: :json
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -35,7 +36,7 @@ RSpec.describe Api::V1::SurveysController, type: :controller do
     context 'when survey has no categories' do
       it 'returns an empty categories array' do
         survey.categories.destroy_all
-        get :show, params: { id: survey.id }
+        get :show, params: { id: survey.id }, format: :json
         json_response = JSON.parse(response.body)
         expect(json_response['categories']).to be_empty
       end
@@ -44,7 +45,7 @@ RSpec.describe Api::V1::SurveysController, type: :controller do
     context 'when category has no questions' do
       it 'returns an empty questions array' do
         category.questions.destroy_all
-        get :show, params: { id: survey.id }
+        get :show, params: { id: survey.id }, format: :json
         json_response = JSON.parse(response.body)
         expect(json_response['categories'].first['questions']).to be_empty
       end
@@ -53,7 +54,7 @@ RSpec.describe Api::V1::SurveysController, type: :controller do
     context 'when question has no answer options' do
       it 'returns an empty options array' do
         question.answer_options.destroy_all
-        get :show, params: { id: survey.id }
+        get :show, params: { id: survey.id }, format: :json
         json_response = JSON.parse(response.body)
         expect(json_response['categories'].first['questions'].first['options']).to be_empty
       end
