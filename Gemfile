@@ -46,7 +46,7 @@ group :development, :test do
   # RSpec for testing
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem "faker", "~> 3.2"
+  gem "faker", "~> 3.5"
 end
 
 group :test do
